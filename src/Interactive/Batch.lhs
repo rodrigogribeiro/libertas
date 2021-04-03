@@ -1,6 +1,7 @@
-> module Interactive.Batch where
+> module Interactive.Batch (batchExecution) where
 
 > import Core.Parser
+> import Core.Pretty
 > import Core.Syntax
 > import Core.TypeChecker
 
@@ -12,7 +13,7 @@ Definition of batch execution mode for libertas
 -----------------------------------------------
 
 In batch mode, the libertas system will execute the
-proof checker on an input and produce, as a result,
+proof checker on an input file and produce, as a result,
 a file clf, which is essentially a JSON format with
 the checked term and its type.
 
@@ -27,7 +28,7 @@ the checked term and its type.
 >                             Left errs -> showErrors errs
 >                             Right ts  -> writeCLF file ts
 
-
+Functions for error reporting
 
 > showErrors :: [Error] -> IO ()
 > showErrors = mapM_ showError
@@ -36,11 +37,13 @@ the checked term and its type.
 > showError ExpectedFunction
 >       = putStrLn "Expected a function."
 > showError (UndefinedVariable n)
->       = putStrLn $ "Undefined variable:" ++ (unName n)
+>       = putStrLn $ "Undefined variable:" ++ (pretty n)
 > showError (MatchingError t t')
->       = putStrLn $ "Cannot match\n" ++ (show t) ++ "\nwith\n" ++ (show t')
+>       = putStrLn $ "Cannot match\n" ++ (pretty t) ++ "\nwith\n" ++ (pretty t')
 > showError (InferenceError e)
->       = putStrLn $ "Cannot check the proof of\n" ++ (show e)
+>       = putStrLn $ "Cannot check the proof of\n" ++ (pretty e)
+
+Writing a type checked value as a JSON type.
 
 > writeCLF :: FilePath -> [Theorem] -> IO ()
 > writeCLF file ts
@@ -48,4 +51,5 @@ the checked term and its type.
 >           let fname = fst $ splitExtension file
 >               file' = addExtension fname "clf"
 >               tdata = unlines $ map (show . encode) ts
+>           mapM_ (putStrLn . show . pprint) ts
 >           writeFile file' tdata

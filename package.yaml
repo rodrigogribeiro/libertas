@@ -39,7 +39,7 @@ library:
 
 executables:
   libertas-exe:
-    main:                Main.hs
+    main:                Main.lhs
     source-dirs:         app
     ghc-options:
     - -threaded
