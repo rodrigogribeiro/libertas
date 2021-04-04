@@ -5,6 +5,8 @@
 > import Core.Syntax
 > import Core.TypeChecker
 
+> import Interactive.InputParser
+
 > import Data.Aeson
 
 > import System.FilePath.Posix
@@ -16,7 +18,6 @@ In batch mode, the libertas system will execute the
 proof checker on an input file and produce, as a result,
 a file clf, which is essentially a JSON format with
 the checked term and its type.
-
 
 > batchExecution :: FilePath -> IO ()
 > batchExecution file

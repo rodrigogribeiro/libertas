@@ -30,6 +30,10 @@ library
       Core.Syntax
       Core.TypeChecker
       Interactive.Batch
+      Interactive.InputParser
+      Interactive.Tactic.Core
+      Interactive.Tactic.Elab
+      Interactive.Tactic.Parser
   other-modules:
       Paths_libertas
   hs-source-dirs:

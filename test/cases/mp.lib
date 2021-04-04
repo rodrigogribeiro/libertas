@@ -1,1 +1,9 @@
 mp :: A -> (A -> B) -> B := \ x f . f x ;
+
+mp1 :: A -> (A -> B) -> B :=
+begin
+  assume H ;
+  assume H1 ;
+  apply H1 in H ;
+  exact H ;
+end ;

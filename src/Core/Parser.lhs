@@ -8,32 +8,9 @@
 > import qualified Text.Parsec.Expr as Ex
 > import qualified Text.Parsec.Token as Tok
 
-Exported parsing functions
---------------------------
 
-> parseModule :: String -> Either ParseError [Theorem]
-> parseModule = parse fileParser ""
-
-
-Definition of the parser
-------------------------
-
-* libertas file parser
-
-> fileParser :: Parser [Theorem]
-> fileParser
->       = endBy theoremParser (Tok.symbol lexer ";")
-
-* theorem parser
-
-> theoremParser :: Parser Theorem
-> theoremParser
->       = f <$> nameP <*> reservedOp "::"
->                     <*> typeParser
->                     <*> reservedOp ":="
->                     <*> expr
->      where
->        f n _ t _ e = Theorem n t e
+Parser for core language features
+---------------------------------
 
 * Syntax parsing for types
 
@@ -80,13 +57,13 @@ Definition of the parser
 >          es <- many1 term
 >          return $ foldl1 App es
 
-* Basic lexing stuff
+* Basic lexing stuff:
 
 > lexer :: Tok.TokenParser ()
 > lexer = Tok.makeTokenParser style
 >    where
 >      ops = ["\\", ".", "->", ":=", "::"]
->      names = ["false"]
+>      names = ["false", "begin", "end", "exact", "assume", "apply", "in"]
 >      style = emptyDef{ Tok.reservedOpNames = ops
 >                      , Tok.reservedNames = names
 >                      , Tok.commentLine = "#" }
