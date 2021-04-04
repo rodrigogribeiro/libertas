@@ -33,6 +33,8 @@ dependencies:
 - aeson
 - optparse-applicative
 - filepath
+- microlens
+- microlens-th
 
 library:
   source-dirs: src

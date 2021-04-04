@@ -38,11 +38,11 @@ Definition of the core language for propositional logic
 > instance FromJSON Ty
 
 
-> data Theorem = Theorem Name Ty Term
+> data Definition = Definition Name Ty Term
 >                deriving (Eq, Ord, Show, Generic)
 
-> instance ToJSON Theorem
-> instance FromJSON Theorem
+> instance ToJSON Definition
+> instance FromJSON Definition
 
 Typing contexts
 

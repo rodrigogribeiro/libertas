@@ -23,14 +23,14 @@ A type for the major errors that can be found in type checking
 
 Running the proof checker
 
-> checkModule :: [Theorem] -> Either [Error] [Theorem]
+> checkModule :: [Definition] -> Either [Error] [Definition]
 > checkModule ts
->       = case partitionEithers (map checkTheorem ts) of
+>       = case partitionEithers (map checkDefinition ts) of
 >           (es@(_ : _) , _) -> Left es
 >           _                -> Right ts
 
-> checkTheorem :: Theorem -> Either Error Ty
-> checkTheorem (Theorem _ t p) = checkProof p t
+> checkDefinition :: Definition -> Either Error Ty
+> checkDefinition (Definition _ t p) = checkProof p t
 
 > checkProof :: Term -> Ty -> Either Error Ty
 > checkProof e t = runTcM check Map.empty

@@ -6,6 +6,7 @@
 > import Core.TypeChecker
 
 > import Interactive.InputParser
+> import Interactive.InputElab
 
 > import Data.Aeson
 
@@ -25,7 +26,7 @@ the checked term and its type.
 >           content <- readFile file
 >           case parseModule content of
 >               Left err -> print err
->               Right m  -> case checkModule m of
+>               Right m  -> case checkModule (elabModule m) of
 >                             Left errs -> showErrors errs
 >                             Right ts  -> writeCLF file ts
 
@@ -46,7 +47,7 @@ Functions for error reporting
 
 Writing a type checked value as a JSON type.
 
-> writeCLF :: FilePath -> [Theorem] -> IO ()
+> writeCLF :: FilePath -> [Definition] -> IO ()
 > writeCLF file ts
 >       = do
 >           let fname = fst $ splitExtension file

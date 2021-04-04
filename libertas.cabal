@@ -30,7 +30,9 @@ library
       Core.Syntax
       Core.TypeChecker
       Interactive.Batch
+      Interactive.InputElab
       Interactive.InputParser
+      Interactive.InputSyntax
       Interactive.Tactic.Core
       Interactive.Tactic.Elab
       Interactive.Tactic.Parser
@@ -45,6 +47,8 @@ library
     , base >=4.7 && <5
     , containers
     , filepath
+    , microlens
+    , microlens-th
     , mtl
     , optparse-applicative
     , parsec
@@ -69,6 +73,8 @@ executable libertas-exe
     , containers
     , filepath
     , libertas
+    , microlens
+    , microlens-th
     , mtl
     , optparse-applicative
     , parsec
@@ -94,6 +100,8 @@ test-suite libertas-test
     , containers
     , filepath
     , libertas
+    , microlens
+    , microlens-th
     , mtl
     , optparse-applicative
     , parsec

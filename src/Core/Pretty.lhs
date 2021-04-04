@@ -19,8 +19,8 @@ Definition of a pretty printer for Libertas core syntax
 
 * Instances for the syntax
 
-> instance PPrint Theorem where
->   pprint (Theorem n t e)
+> instance PPrint Definition where
+>   pprint (Definition n t e)
 >       = pprint n <+> dcolon <+> pprint t <+> def <+> pprint e
 >         where
 >           def = text ":="

@@ -6,8 +6,8 @@
 Definition of the tactic elaborator
 -----------------------------------
 
-> elab :: Script -> Term
-> elab (Script ts)
+> tacticElab :: Script -> Term
+> tacticElab (Script ts)
 >       = maybe (Var (Name "Elaborator error!"))
 >               id
 >               (foldr step Nothing ts)
