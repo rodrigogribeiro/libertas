@@ -35,6 +35,9 @@ Parser for core language features
 > nameP :: Parser Name
 > nameP = Name <$> identifier
 
+> termHole :: Parser Term
+> termHole = Hole <$ reservedOp "?"
+
 > termVar :: Parser Term
 > termVar = Var <$> nameP
 
@@ -50,7 +53,8 @@ Parser for core language features
 > term :: Parser Term
 > term = parens expr <|>
 >        termLam     <|>
->        termVar
+>        termVar     <|>
+>        termHole
 
 > expr :: Parser Term
 > expr = do
@@ -62,7 +66,7 @@ Parser for core language features
 > lexer :: Tok.TokenParser ()
 > lexer = Tok.makeTokenParser style
 >    where
->      ops = ["\\", ".", "->", ":=", "::"]
+>      ops = ["\\", ".", "->", ":=", "::", "?"]
 >      names = ["false", "begin", "end", "exact", "assume", "apply", "in"]
 >      style = emptyDef{ Tok.reservedOpNames = ops
 >                      , Tok.reservedNames = names

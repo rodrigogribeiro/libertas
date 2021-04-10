@@ -1,0 +1,10 @@
+trans :: (A -> B) -> (B -> C) -> A -> C :=
+      \ f g x . g (f x) ;
+
+
+trans1 :: (A -> B) -> (B -> C) -> A -> C :=
+begin
+   assume H  ;
+   assume H1 ;
+   assume HA ;
+end;

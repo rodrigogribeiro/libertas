@@ -88,3 +88,5 @@ type checking and type inference algorithms
 >           case ty of
 >             Just t -> return t
 >             _      -> throwError (UndefinedVariable n)
+> typeInfer Hole
+>       = throwError (InferenceError Hole)

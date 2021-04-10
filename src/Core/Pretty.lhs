@@ -43,6 +43,7 @@ Definition of a pretty printer for Libertas core syntax
 >      | isApp e = parens (pprint e) <+> pprint e'
 >      | otherwise = pprint e <+> pprint e'
 >   pprint (Ann e t) = pprint e <+> dcolon <+> pprint t
+>   pprint Hole = text "?"
 
 Auxiliar functions
 

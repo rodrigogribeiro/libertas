@@ -6,12 +6,12 @@
 Definition of the tactic elaborator
 -----------------------------------
 
+The tactic elaborator is based on a hole term syntax
+
 > tacticElab :: Script -> Term
 > tacticElab (Script ts)
->       = maybe (Var (Name "Elaborator error!"))
->               id
->               (foldr step Nothing ts)
->        where
->          step (Exact e) _ = Just e
->          step (Assume n) (Just e) = Just (Lam n e)
->          step (Apply f a) _ = Just (App f a)
+>       = foldr step Hole ts
+>       where
+>         step (Exact e) _ = e
+>         step (Assume n) ac = Lam n ac
+>         step (Apply e) ac = App e ac

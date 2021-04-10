@@ -31,18 +31,17 @@ Parser for tactics scripts
 >                ]
 
 > parseExact :: Parser CoreTac
-> parseExact = const Exact <$> exact <*> expr
+> parseExact = Exact <$ exact <*> expr
 >       where
 >         exact = reserved "exact"
 
 > parseAssume :: Parser CoreTac
-> parseAssume = const Assume <$> assume <*> nameP
+> parseAssume = Assume <$ assume <*> nameP
 >       where
 >          assume = reserved "assume"
 
 > parseApply :: Parser CoreTac
-> parseApply = f <$> apply <*> expr <*> pin <*> expr
+> parseApply = f <$> apply <*> expr
 >       where
 >          apply = reserved "apply"
->          pin = reserved "in"
->          f _ e _ e' = Apply e e'
+>          f _ e = Apply e

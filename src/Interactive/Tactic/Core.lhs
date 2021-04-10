@@ -19,7 +19,7 @@ a datatype.
 > data CoreTac
 >   = Exact  Term       -- directly prove a value by using a term.
 >   | Assume Name       -- starts the proof of an implication. Generates a lambda.
->   | Apply  Term Term  -- implication elimination. Generates an application.
+>   | Apply  Term       -- implication elimination. Generates an application.
 >   deriving (Eq, Ord, Show, Generic)
 
 

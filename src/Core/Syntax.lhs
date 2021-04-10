@@ -22,6 +22,7 @@ Definition of the core language for propositional logic
 >       | Lam Name Term
 >       | App Term Term
 >       | Ann Term Ty
+>       | Hole
 >       deriving (Eq, Ord, Show, Generic)
 
 > instance ToJSON Term
